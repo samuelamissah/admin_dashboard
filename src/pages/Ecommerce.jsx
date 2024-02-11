@@ -2,8 +2,12 @@ import React from 'react';
 import { FaDotCircle } from "react-icons/fa";
 import { Button, SparkLine, Stacked } from '../components';
 import { earningData, SparklineAreaData } from '../data/dummy';
+import { useStateContext } from '../contexts/ContextProvider';
 
 const Ecommerce = () => {
+ const  {currentColor } = useStateContext();
+
+
   return (
     <div className="mt-24 overflow-x-hidden">
       <div className="flex flex-wrap lg:flex-nowrap justify-center ">
@@ -17,7 +21,7 @@ const Ecommerce = () => {
           <div className='mt-6'>
             <Button
               color='white'
-              bgColor='blue'
+              bgColor={currentColor}
               title='View Details'
               borderRadius="12px"
               size='md'
@@ -91,9 +95,8 @@ const Ecommerce = () => {
               </div>
               <div className='mt-10 hover:ease-out'>
             <Button 
-              
             color="white"
-            bgColor="blue"
+            bgColor={currentColor}
             title="Download"
             borderRadius="12px"
             />

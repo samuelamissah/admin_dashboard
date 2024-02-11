@@ -11,7 +11,7 @@ import { useStateContext } from './contexts/ContextProvider'
 
 const App = () => {
 
-const {activeMenu} = useStateContext();
+const {currentColor,activeMenu, themeSettings, setThemeSettings} = useStateContext();
 
   return (
     <div>
@@ -20,7 +20,9 @@ const {activeMenu} = useStateContext();
         <div className='fixed right-4 bottom-4' style={{zIndex:"1000"}}>
     <TooltipComponent content='Settings' position='Top'>
         <button className='text-3xl p-3 hover:drop-shadow-xl hover:bg-light-gray text-white' type='button'
-        style={{backgroundColor: '#20232A', borderRadius: '50%', boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.5)'}}
+        style={{backgroundColor: currentColor, borderRadius: '50%', boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.5)'}}
+        onClick={() => setThemeSettings(true)}
+
         >
         <FiSettings />
         </button>
@@ -43,7 +45,8 @@ const {activeMenu} = useStateContext();
                 <div className='fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full'>
                     <Navbar/>
                 </div>
-              <div>
+              <div> 
+               {themeSettings && <ThemeSettings />} 
                     <Routes>
                         <Route path='/' element={<Ecommerce />} />
                         <Route path='/ecommerce' element={<Ecommerce />} />
@@ -57,7 +60,7 @@ const {activeMenu} = useStateContext();
                         <Route path='/kanban' element={<Kanban/>}/>
                         <Route path='/editor' element={<Editor/>}/>
                         <Route path='/calendar' element={<Calendar/>}/>
-                        <Route path='/colo-picker' element={<ColorPicker/>}/>
+                        <Route path='/color-picker' element={<ColorPicker/>}/>
 
                         {/*Chat*/}
                         <Route path='/line' element={<Line/>}/>

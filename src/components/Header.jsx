@@ -2,7 +2,7 @@ import React from 'react'
 
 const Header = ({category, title}) => {
   return (
-    <div className='m-10'>
+    <div className='m-11 lg:m-1'>
       <p className='text-gray-400 '>
         {category}
       </p>

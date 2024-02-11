@@ -8,7 +8,7 @@ import { useStateContext } from '../contexts/ContextProvider'
 
 const Sidebar = () => {
 
-const {activeMenu, setActiveMenu, screenSize} = useStateContext();
+const {currentColor, activeMenu, setActiveMenu, screenSize} = useStateContext();
 
 
 const handleCloseSidebar = () => {
@@ -18,7 +18,7 @@ const handleCloseSidebar = () => {
 }
 
 
-const activeLink = 'm-2 flex items-center gap-5 pt-3 pl-4 pb-2.5 rounded-lg bg-green-300 text-md'
+const activeLink = 'm-2 flex items-center gap-5 pt-3 pl-4 pb-2.5 rounded-lg  text-md'
 const normalLink = 'text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2 flex items-center gap-4 pl-4 pb-3 rounded-lg  text-md'
 
   return (
@@ -55,6 +55,7 @@ className='items-center gap-3 ml-3 mt-5 flex text-xl font-extrabold tracking-tig
                 key={link.name}
                   onClick={handleCloseSidebar}
                 className={({isActive}) => isActive ? activeLink : normalLink}
+                style={({isActive}) => ({backgroundColor: isActive ? currentColor : ''})} 
                 >
                   {link.icon}
                   <span className='uppercase'>{link.name}</span>
