@@ -8,9 +8,17 @@ import { useStateContext } from '../contexts/ContextProvider'
 
 const Sidebar = () => {
 
-const {activeMenu, setActiveMenu} = useStateContext();
+const {activeMenu, setActiveMenu, screenSize} = useStateContext();
 
-const activeLink = 'm-2 flex items-center gap-4 pl-4 pb-3 rounded-lg  text-white text-md'
+
+const handleCloseSidebar = () => {
+  if(activeMenu && screenSize <= 900) {
+    setActiveMenu(false)
+  }
+}
+
+
+const activeLink = 'm-2 flex items-center gap-5 pt-3 pl-4 pb-2.5 rounded-lg bg-green-300 text-md'
 const normalLink = 'text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2 flex items-center gap-4 pl-4 pb-3 rounded-lg  text-md'
 
   return (
@@ -19,8 +27,9 @@ const normalLink = 'text-gray-700 dark:text-gray-200 dark:hover:text-black hover
         activeMenu && ( <>
         <div className='flex justify-between items-center'>
           <Link to='/'
-          onClick={()=> setActiveMenu(false)}
-          className='items-center gap-3 ml-3 mt-5 flex text-xl font-extrabold tracking-tight dark:text-white text-slate-900' >
+      onClick={handleCloseSidebar}
+
+className='items-center gap-3 ml-3 mt-5 flex text-xl font-extrabold tracking-tight dark:text-white text-slate-900' >
           <SiShopware /> 
           <span>KojoWare</span>
 
@@ -28,9 +37,8 @@ const normalLink = 'text-gray-700 dark:text-gray-200 dark:hover:text-black hover
             <TooltipComponent content='Menu' position='BottomCenter'>
               <button
               type='button'
-              className='text-3xl p-3 hover:drop-shadow-xl rounded-full hover:bg-light-gray md:hidden block mt-3'
-              onClick={() => setActiveMenu(prevActiveMenu => !prevActiveMenu)}
-              >
+              className='text-xl p-3 hover:drop-shadow-xl rounded-full hover:bg-light-gray md:hidden block mt-3'
+              onClick={() => setActiveMenu(!activeMenu)}              >
                 <MdOutlineCancel  />
               </button>
               </TooltipComponent>
@@ -45,7 +53,7 @@ const normalLink = 'text-gray-700 dark:text-gray-200 dark:hover:text-black hover
               {item.links.map((link) => (
                 <NavLink to={`/${link.name }`}
                 key={link.name}
-                onClick={() => window.location.reload()}
+                  onClick={handleCloseSidebar}
                 className={({isActive}) => isActive ? activeLink : normalLink}
                 >
                   {link.icon}
