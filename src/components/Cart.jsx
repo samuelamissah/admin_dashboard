@@ -1,7 +1,7 @@
 import React from 'react';
 import { MdOutlineCancel } from 'react-icons/md';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
-
+import { useEffect } from 'react';
 import { useStateContext } from '../contexts/ContextProvider';
 import { cartData } from '../data/dummy';
 import {Button} from '../components';
@@ -9,6 +9,21 @@ import {Button} from '../components';
 const Cart = () => {
 
   const { currentColor, handleClick } = useStateContext();
+  const handleBodyScrollLock = (lock) => {
+    document.body.style.overflow = lock ? 'hidden' : 'auto';
+  };
+
+  useEffect(() => {
+    // Enable scroll when component unmounts
+    return () => {
+      handleBodyScrollLock(false);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Lock scroll when component mounts
+    handleBodyScrollLock(true);
+  }, []);
 
   return (
     <div className="bg-half-transparent w-full fixed nav-item top-0 right-0 ">
