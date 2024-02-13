@@ -1,4 +1,3 @@
-import { click } from "@syncfusion/ej2-react-grids";
 import React, {createContext, useContext} from "react";
 import {useState} from "react";
 
@@ -25,7 +24,7 @@ export const ContextProvider = ({children}) => {
 
     const [screenSize, setScreenSize] = useState(undefined);
     const [currentColor, setCurrentColor] = useState('#03C9D7');
-    const [currentMode, setCurrentMode] = useState('light');
+    const [currentMode, setCurrentMode] = useState('Light');
     const [themeSettings, setThemeSettings] = useState('false');
 
 
@@ -35,7 +34,6 @@ setCurrentMode(e.target.value);
 localStorage.setItem('themeMode', e.target.value);
 
 setThemeSettings(false);
-
 }
 
 const setColor = (color) => {
