@@ -76,6 +76,9 @@ const {currentMode, currentColor,activeMenu, themeSettings, setThemeSettings} = 
 
                     </Routes>
               </div>
+              <div className='w-full bottom-0'>
+                <Footer />
+                  </div>
               </div>             
     </div>
 </BrowserRouter>
