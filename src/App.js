@@ -49,7 +49,7 @@ const {currentMode, currentColor,activeMenu, themeSettings, setThemeSettings} = 
               <div> 
                {themeSettings && <ThemeSettings />} 
                     <Routes>
-                        <Route path='/' element={<Ecommerce />} />
+                        <Route path='/ecommerce' element={<Ecommerce />} />
                         <Route path='/ecommerce' element={<Ecommerce />} />
 
                         {/*Page*/}

@@ -4,11 +4,27 @@ import { BsCheck, BsCheck2 } from 'react-icons/bs';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { useStateContext } from '../contexts/ContextProvider';
 import { themeColors } from '../data/dummy';
+import { useEffect } from 'react';
 
 const ThemeSettings = () => {
   const {setColor, setMode, currentMode, currentColor, setThemeSettings} = useStateContext();
 
 
+  const handleBodyScrollLock = (lock) => {
+    document.body.style.overflow = lock ? 'hidden' : 'auto';
+  };
+
+  useEffect(() => {
+    // Enable scroll when component unmounts
+    return () => {
+      handleBodyScrollLock(false);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Lock scroll when component mounts
+    handleBodyScrollLock(true);
+  }, []);
 
 
   return (
